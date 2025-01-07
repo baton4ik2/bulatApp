@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/university
+    username: myUser
+    password: kabulatka228
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml
+
+test:
+  mode: false
+
+logging:
+  level:
+    root: info
