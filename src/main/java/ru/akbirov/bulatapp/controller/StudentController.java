@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.akbirov.bulatapp.dto.AddStudentRequestDto;
-import ru.akbirov.bulatapp.dto.AllGroupResponseDto;
 import ru.akbirov.bulatapp.dto.AllStudentResponseDto;
 import ru.akbirov.bulatapp.entity.Group;
 import ru.akbirov.bulatapp.entity.Student;

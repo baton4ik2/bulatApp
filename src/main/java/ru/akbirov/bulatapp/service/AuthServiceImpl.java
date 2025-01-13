@@ -24,7 +24,7 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public ResponseEntity<?> createAuthToken(@RequestBody JwtRequestDto jwtRequestDto) {
+    public ResponseEntity<JwtResponseDto> createAuthToken(JwtRequestDto jwtRequestDto) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 jwtRequestDto.getUsername(), jwtRequestDto.getPassword()
         ));
@@ -34,7 +34,7 @@ public class AuthServiceImpl implements AuthService {
         return ResponseEntity.ok(new JwtResponseDto(token));
     }
 
-    public ResponseEntity<?> createNewUser(@RequestBody RegistrationUserDto registrationUserDto) {
+    public ResponseEntity<?> createNewUser(RegistrationUserDto registrationUserDto) {
         if (!registrationUserDto.getPassword().equals(registrationUserDto.getConfirmPassword())) {
             return new ResponseEntity<>(new AppErrorDto(HttpStatus.BAD_REQUEST.value(),
                     "Пароли не совпадают"), HttpStatus.BAD_REQUEST);

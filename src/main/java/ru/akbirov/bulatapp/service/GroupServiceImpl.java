@@ -39,7 +39,8 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Group findById(int id) {
         log.info("Find group by id: {} ", id);
-        return groupRepository.findById(id).orElseThrow(GroupNotFoundException::new);
+        return groupRepository.findById(id)
+                .orElseThrow(GroupNotFoundException::new);
     }
 
     @Override
@@ -52,12 +53,17 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void update(Group group) {
         log.info("update group: {}", group);
+        groupRepository.findById(group.getId())
+                .orElseThrow(GroupNotFoundException::new);
         groupRepository.save(group);
     }
 
     @Override
     public void deleteById(int id) {
         log.info("Delete group by id: {}", id);
+        if (groupRepository.findById(id).isEmpty()) {
+            throw new GroupNotFoundException();
+        }
         groupRepository.deleteById(id);
     }
 
@@ -77,7 +83,4 @@ public class GroupServiceImpl implements GroupService {
         groupRepository.delete(group);
     }
 
-    private void method() {
-        throw new RuntimeException();
-    }
 }
